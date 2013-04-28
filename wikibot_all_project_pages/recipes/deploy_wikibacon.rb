@@ -1,4 +1,12 @@
+
 directory "/opt/wikibacon" do
+	owner "ubuntu"
+	group "ubuntu"
+	mode 0755
+	action :create
+end
+
+directory "/opt/wikibacon/shared" do
 	owner "ubuntu"
 	group "ubuntu"
 	mode 0755
