@@ -5,15 +5,11 @@
 # Copyright 2013, Ted Timmons, MIT license
 #
 
-require 'perl'
+package "perl"
 
 # Time::ParseDate
-package 'libtime-modules-perl' do
-	action :install
-end
+package "libtime-modules-perl"
 
 # MediaWiki::API
-package 'libmediawiki-api-perl' do
-	action :install
-end
+package "libmediawiki-api-perl"
 
