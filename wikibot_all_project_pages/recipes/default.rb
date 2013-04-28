@@ -5,9 +5,7 @@
 # Copyright 2013, Ted Timmons, MIT license
 #
 
-package 'perl' do
-	action :install
-end
+require 'perl'
 
 # Time::ParseDate
 package 'libtime-modules-perl' do
