@@ -19,3 +19,12 @@ deploy_revision "/opt/wikibacon" do
 	symlink_before_migrate nil # we don't have config/database.yml
 	#notifies
 end
+
+template "wiki.conf" do
+	path "/opt/wikibacon/wikiconf"
+	source "wiki.conf.erb"
+	owner "ubuntu"
+	group "ubuntu"
+	mode "0600"
+end
+
