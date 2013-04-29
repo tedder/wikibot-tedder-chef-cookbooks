@@ -1,0 +1,2 @@
+mw_user:<%= node[:wikipedia][:user] %>
+mw_pass:<%= node[:wikipedia][:pass] %>
