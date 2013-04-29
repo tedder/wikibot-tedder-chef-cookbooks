@@ -20,8 +20,7 @@ deploy_revision "/opt/wikibacon" do
 	#notifies
 end
 
-template "wiki.conf" do
-	path "/opt/wikibacon/wikiconf"
+template "/opt/wikibacon/wiki.conf" do
 	source "wiki.conf.erb"
 	owner "ubuntu"
 	group "ubuntu"
