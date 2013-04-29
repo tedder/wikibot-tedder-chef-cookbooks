@@ -34,5 +34,5 @@ cron "current" do
 	minute "*/20"
 	mailto "ted@perljam.net"
 	action :create
-	command %Q{/opt/wikibacon/shared/cached-copy/bin/current.pl --userfile=/opt/wikibacon/wiki.conf }
+	command %Q{/usr/bin/perl -I /opt/wikibacon/shared/cached-copy/ /opt/wikibacon/shared/cached-copy/bin/current.pl --userfile=/opt/wikibacon/wiki.conf }
 end
