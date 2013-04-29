@@ -21,6 +21,7 @@ deploy_revision "/opt/wikibacon" do
 	#notifies
 end
 
+
 template "/opt/wikibacon/wiki.conf" do
 	source "wiki.conf.erb"
 	owner "ubuntu"
@@ -28,3 +29,10 @@ template "/opt/wikibacon/wiki.conf" do
 	mode "0600"
 end
 
+cron "current" do
+	hour "*"
+	minute "*/20"
+	mailto "ted@perljam.net"
+	action :create
+	command %Q{/opt/wikibacon/shared/cached-copy/bin/current.pl --userfile=/opt/wikibacon/wiki.conf }
+end
