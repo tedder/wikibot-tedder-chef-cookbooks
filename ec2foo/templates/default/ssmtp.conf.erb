@@ -1,0 +1,11 @@
+root=<%= node[:mail][:root] %>
+hostname=<%= node[:mail][:hostname] %>
+
+UseTLS=YES
+UseSTARTTLS=YES
+mailhub=<%= node[:mail][:smtp][:hostname] %>:587
+
+AuthMethod=LOGIN
+AuthUser=<%= node[:mail][:smtp][:username] %>
+AuthPass=<%= node[:mail][:smtp][:password] %>
+
