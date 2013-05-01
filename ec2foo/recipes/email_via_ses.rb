@@ -1,7 +1,7 @@
 package 'ssmtp'
 package 'mailutils'
 
-template "/etc/ssmtp.conf" do
+template "/etc/ssmtp/ssmtp.conf" do
   source "ssmtp.conf.erb"
   owner "root"
   group "root"

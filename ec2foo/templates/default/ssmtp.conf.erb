@@ -1,10 +1,15 @@
+# Where should mail for uids under 1000 go?
 root=<%= node[:mail][:root] %>
-hostname=<%= node[:mail][:hostname] %>
 
+# What's our hostname?
+hostname=<%= node[:opsworks][:instance][:hostname].node[:mail][:hostname] %>
+
+# Where should we route mail?
 UseTLS=YES
 UseSTARTTLS=YES
 mailhub=<%= node[:mail][:smtp][:hostname] %>:587
 
+# User/password info.
 AuthMethod=LOGIN
 AuthUser=<%= node[:mail][:smtp][:username] %>
 AuthPass=<%= node[:mail][:smtp][:password] %>
