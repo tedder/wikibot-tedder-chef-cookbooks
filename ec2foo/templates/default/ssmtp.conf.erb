@@ -2,7 +2,7 @@
 root=<%= node[:mail][:root] %>
 
 # What's our hostname?
-hostname=<%= node[:opsworks][:instance][:hostname].node[:mail][:hostname] %>
+hostname=<%= node[:opsworks][:instance][:hostname] %>.<%= node[:mail][:hostname] %>
 
 # Where should we route mail?
 UseTLS=YES
