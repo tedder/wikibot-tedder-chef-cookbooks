@@ -40,10 +40,8 @@ end
 action :delete do
   if exists?
     description = "delete virtualenv #{new_resource} at #{new_resource.path}"
-    converge_by(description) do
-       Chef::Log.info("Deleting virtualenv #{new_resource} at #{new_resource.path}")
-       FileUtils.rm_rf(new_resource.path)
-    end
+    Chef::Log.info("Deleting virtualenv #{new_resource} at #{new_resource.path}")
+    FileUtils.rm_rf(new_resource.path)
   end
 end
 
