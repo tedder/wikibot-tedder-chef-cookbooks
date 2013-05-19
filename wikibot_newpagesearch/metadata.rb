@@ -1,0 +1,2 @@
+depends 'ec2foo'
+

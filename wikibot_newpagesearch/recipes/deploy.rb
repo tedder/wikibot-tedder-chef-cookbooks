@@ -41,6 +41,7 @@ template "/opt/tedderbot/ehcache.xml" do
 	mode "0644"
 end
 
+include_recipe "ec2foo::awscli"
 
 execute "download_tar" do
 	not_if {File.exists?("/opt/tedderbot/appbundle.tgz")}
