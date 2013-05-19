@@ -1,0 +1,6 @@
+wiki.properties
+username=TedderBot
+password=22odhba9Ch4Cg
+Teds-MacBook-Pro:lib tedder$ openjdk-7-jre-headless
+
+
