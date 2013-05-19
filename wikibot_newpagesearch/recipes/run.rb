@@ -1,4 +1,5 @@
 include_recipe "ec2foo::awscli"
+include_recipe "configure"
 include_recipe "deploy"
 
 execute "upload_cache" do
