@@ -1,2 +1,4 @@
+<% if defined?(node) && node[:aws] %>
 username=<%= node[:wikipedia][:user] %>
 password=<%= node[:wikipedia][:pass] %>
+<% end %>
