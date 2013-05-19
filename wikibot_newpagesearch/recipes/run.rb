@@ -4,13 +4,13 @@ include_recipe "deploy"
 execute "download_cache" do
 	not_if {File.exists?("/opt/tedderbot/wiki-articles.data")}
 	command %Q{aws s3 get-object --bucket tedderbot-wikitools --region us-west-2 --key newpagesearch/wiki-articles.data /opt/tedderbot/wiki-articles.data}
-	notifies :run, "execute[runner]"
+	notifies :run, resources(:execute => "runner")
 end
 
 execute "runner" do
 	action :nothing
   command %Q{java -cp /opt/tedderbot/ -cp /opt/tedderbot/NewPageFetcherApplication_lib/ -jar /opt/tedderbot/NewPageFetcherApplication.jar /opt/tedderbot/AwsCredentials.properties /opt/tedderbot/wiki.properties >> /opt/tedderbot/run.log 2>&1 }
-	notifies :run, "execute[upload_cache]"
+	notifies :run, resources(:execute => "upload_cache")
 end
 
 execute "upload_cache" do
