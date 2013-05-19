@@ -34,6 +34,26 @@ template "/opt/tedderbot/wiki.properties" do
 	mode "0600"
 end
 
+template "/opt/tedderbot/ehcache.xml" do
+	source "ehcache.xml.erb"
+	owner "ubuntu"
+	group "ubuntu"
+	mode "0644"
+end
+
+
+execute "download_tar" do
+	not_if {File.exists?("/opt/tedderbot/appbundle.tgz")}
+	command %Q{aws s3 get-object --bucket tedderbot-wikitools --region us-west-2 --key newpagesearch/appbundle.tgz /opt/tedderbot/appbundle.tgz}
+end
+
+
+execute "extract_tar" do
+	not_if {File.exists?("/opt/tedderbot/NewPageFetcherApplication.jar")}
+	command %Q{tar -C /opt/tedderbot/ -zxvf /opt/tedderbot/appbundle.tgz}
+end
+
+
 cron "current" do
 	hour "7"
 	mailto "ted@perljam.net"
