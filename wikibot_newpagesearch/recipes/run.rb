@@ -2,10 +2,16 @@ include_recipe "ec2foo::awscli"
 include_recipe "wikibot_newpagesearch::configure"
 include_recipe "wikibot_newpagesearch::deploy"
 
+execute "shutdown" do
+	action :nothing
+	command %Q{shutdown -h +10 "shutdown via chef/opsworks recipe"}
+end
+
 execute "upload_cache" do
 	action :nothing
 	not_if {File.exists?("/opt/tedderbot/appbundle.tgz")}
 	command %Q{aws s3 get-object --bucket tedderbot-wikitools --region us-west-2 --key newpagesearch/appbundle.tgz /opt/tedderbot/appbundle.tgz}
+	notifies :run, resources(:execute => "shutdown"), :delayed
 end
 
 execute "runner" do
