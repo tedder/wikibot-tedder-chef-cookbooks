@@ -1,3 +1,4 @@
+depends 'python'
 include_recipe 'python'
 include_recipe 'python::pip'
 
