@@ -1,10 +1,10 @@
 include_recipe "ec2foo::awscli"
 include_recipe "deploy"
 
-execute "download_cache" do
-	not_if {File.exists?("/opt/tedderbot/wiki-articles.data")}
-	command %Q{aws s3 get-object --bucket tedderbot-wikitools --region us-west-2 --key newpagesearch/wiki-articles.data /opt/tedderbot/wiki-articles.data}
-	notifies :run, resources(:execute => "runner")
+execute "upload_cache" do
+	action :nothing
+	not_if {File.exists?("/opt/tedderbot/appbundle.tgz")}
+	command %Q{aws s3 get-object --bucket tedderbot-wikitools --region us-west-2 --key newpagesearch/appbundle.tgz /opt/tedderbot/appbundle.tgz}
 end
 
 execute "runner" do
@@ -13,9 +13,10 @@ execute "runner" do
 	notifies :run, resources(:execute => "upload_cache")
 end
 
-execute "upload_cache" do
-	action :nothing
-	not_if {File.exists?("/opt/tedderbot/appbundle.tgz")}
-	command %Q{aws s3 get-object --bucket tedderbot-wikitools --region us-west-2 --key newpagesearch/appbundle.tgz /opt/tedderbot/appbundle.tgz}
+execute "download_cache" do
+	not_if {File.exists?("/opt/tedderbot/wiki-articles.data")}
+	command %Q{aws s3 get-object --bucket tedderbot-wikitools --region us-west-2 --key newpagesearch/wiki-articles.data /opt/tedderbot/wiki-articles.data}
+	notifies :run, resources(:execute => "runner")
 end
+
 
