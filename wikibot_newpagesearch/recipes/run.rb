@@ -1,6 +1,6 @@
 include_recipe "ec2foo::awscli"
-include_recipe "configure"
-include_recipe "deploy"
+include_recipe "wikibot_newpagesearch::configure"
+include_recipe "wikibot_newpagesearch::deploy"
 
 execute "upload_cache" do
 	action :nothing
