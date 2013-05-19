@@ -55,12 +55,3 @@ execute "extract_tar" do
 end
 
 
-cron "current" do
-	hour "7"
-	mailto "ted@perljam.net"
-	action :create
-  command %Q{java -cp NewPageFetcherApplication_lib/ -jar NewPageFetcherApplication.jar  AwsCredentials.properties wiki.properties >> /var/log/tedderbot.log 2>&1 }
-	#command %Q{/usr/bin/perl -I /opt/wikibacon/shared/cached-copy/ /opt/wikibacon/shared/cached-copy/bin/current.pl --userfile=/opt/wikibacon/wiki.conf >> /var/log/wikibacon.log 2>&1 }
-end
-
-
