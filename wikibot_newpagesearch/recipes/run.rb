@@ -17,7 +17,7 @@ end
 execute "download_cache" do
 	not_if {File.exists?("/opt/tedderbot/wiki-articles.data")}
 	command %Q{aws s3 get-object --bucket tedderbot-wikitools --region us-west-2 --key newpagesearch/wiki-articles.data /opt/tedderbot/wiki-articles.data}
-	notifies :run, resources(:execute => "runner")
+	notifies :run, resources(:execute => "runner"), :delayed
 end
 
 
