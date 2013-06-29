@@ -11,8 +11,8 @@ end
 
 template "/etc/cron.d/newpagesearch" do
 	source "cron-newpagesearch.erb"
-	owner "ubuntu"
-	group "ubuntu"
+	owner "root"
+	group "root"
 	mode "0644"
 end
 
