@@ -45,7 +45,7 @@ include_recipe "ec2foo::awscli"
 
 execute "download_tar" do
 	not_if {File.exists?("/opt/tedderbot/appbundle.tgz")}
-	command %Q{aws s3 get-object --bucket tedderbot-wikitools --region us-west-2 --key newpagesearch/appbundle.tgz /opt/tedderbot/appbundle.tgz}
+  command %Q{aws s3 cp --region us-west-2 s3://tedderbot-wikitools/newpagesearch/appbundle.tgz /opt/tedderbot/appbundle.tgz}
 end
 
 
